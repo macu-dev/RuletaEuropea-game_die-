@@ -1,3 +1,3 @@
 # RuletaEuropea :game_die:
-El programa permite realizar apuestas a una ruleta europea.
+Este programa permite realizar apuestas a una ruleta europea.
 
