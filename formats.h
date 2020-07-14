@@ -25,6 +25,8 @@
     #define COLOR_30 "\x1b[38;5;30m"
     #define BLINK "\x1b[5m"
     #define COLOR_226 "\x1b[38;5;226m"
+    #define COLOR_46 "\x1b[38;5;46m"
+    #define COLOR_220 "\x1b[38;5;220m"
   #else
     #define MAGENTA_C  ""
     #define RED_C ""
@@ -49,5 +51,7 @@
     #define COLOR_30 ""
     #define COLOR_226 ""
     #define BLINK ""
+    #define COLOR_46 ""
+    #define COLOR_220 ""
   #endif
 #endif
