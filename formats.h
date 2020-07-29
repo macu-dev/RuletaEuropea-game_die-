@@ -54,4 +54,10 @@
     #define COLOR_46 ""
     #define COLOR_220 ""
   #endif
+
+  #ifdef __unix__ //para resetear la consola
+    #define clear system("clear")
+  #elif 
+    #define clear system("cls")
+  #endif
 #endif
