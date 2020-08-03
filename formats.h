@@ -27,6 +27,8 @@
     #define COLOR_226 "\x1b[38;5;226m"
     #define COLOR_46 "\x1b[38;5;46m"
     #define COLOR_220 "\x1b[38;5;220m"
+    #define BACKGROUND_RED "\x1b[101m"
+    #define WHITE "\x1b[97m"
   #else
     #define MAGENTA_C  ""
     #define RED_C ""
@@ -53,6 +55,7 @@
     #define BLINK ""
     #define COLOR_46 ""
     #define COLOR_220 ""
+    #define BACKGROUND_RED ""
   #endif
 
   #ifdef __unix__ //para resetear la consola

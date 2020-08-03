@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gcc main.c funciones.c -o ruletaEuropea 
+gcc main.c funciones.c -o ruletaEuropea -Wall
