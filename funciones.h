@@ -1,3 +1,7 @@
+// Nombre : María Claudia Pérez Escalante
+// correo : mariaclaudiaperezes@gmail.com
+// DNI: 95.962.971
+
 #ifndef FUNCIONES
 #define FUNCIONES
 

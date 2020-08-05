@@ -1,3 +1,6 @@
+// Nombre : María Claudia Pérez Escalante
+// correo : mariaclaudiaperezes@gmail.com
+// DNI: 95.962.971
 
 #ifndef terminal_formats
   #define terminal_formats

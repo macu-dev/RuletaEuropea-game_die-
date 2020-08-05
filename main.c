@@ -1,9 +1,13 @@
 // Este programa simula el juego de la ruleta europea.
 
+// Nombre : María Claudia Pérez Escalante
+// correo : mariaclaudiaperezes@gmail.com
+// DNI: 95.962.971
+
 //librerias
 #include <stdio.h>
-#include <stdlib.h> // sirve para la funcion system 
-#include <time.h> // para obtener el tiempo lo cual me ayuda a crear la semilla
+#include <stdlib.h>
+#include <time.h> 
 #include "funciones.h"
 #define terminal_formats_active  //para activar el formato de salida
 #include "formats.h"
@@ -23,7 +27,7 @@ void menuApuestas(int apuesta[], int cantidadFichas[], int ronda, int rondas, in
 //funcion main
 int main(void){
   printf(BLINK COLOR_172 BOLD_W "\t\t\t\tBIENVENIDO AL CASINO MEGA STAR\n\n" NORMAL_W DEFAULT_C);
-  //semilla // inicializar la semilla
+  //semilla 
   srand(time(NULL));
   //funcion principal de mi programa
   JugarRondas();
@@ -31,24 +35,23 @@ int main(void){
   return 0;
 }
 //fin funcion main
+
 //-- DEFINICIONES DE FUNCIONES ---
 
 //funcion principal de mi programa
 void JugarRondas(){ 
-  int rondas;  // cantidad de rondas
+  int rondas;  // almacena cantidad de rondas
   int cantidadApuestas = 0;
   int numerosGanadores[MAXIMO_RONDAS];
   int perdidasPorRonda[MAXIMO_RONDAS];
   int gananciasPorRonda[MAXIMO_RONDAS];
   int totalPerdidas = 0;
   int totalGanancias = 0;
-  int ret; // auxiliar variable declarar
+  int ret; // auxiliar variable
   
   printf("\t\t\t\tMaximo numero de rondas: %d\n", MAXIMO_RONDAS);
   
-  // for para verificar que ingrese un numero de rondas correctas
-  //while()
-  for(int i = 0; i < 1; i++) {
+  while(1) {
     
     // aqui le preguntamos al usuario cuantas veces quiere jugar
     printf("\n\t\t\t¿Cuantas rondas usted va a jugar en esta mesa? ==>  ");
@@ -57,57 +60,61 @@ void JugarRondas(){
 
     if(rondas < 1 || rondas > MAXIMO_RONDAS){
       printf(RED_C BOLD_W "\t\t\tEl maximo de numero de rondas es %d, vuelva intentarlo\n" NORMAL_W DEFAULT_C, MAXIMO_RONDAS );
-      i--;
     }else{
-      clear;
-      printf("\nQue empiece las apuestas c: !!\n\n");
-      // x  numeros de rondas indicadas por el usuario
-      printf("Usted jugará %d %s en la ruleta europea \n\n", rondas, (rondas > 1 ? "rondas" : "ronda"));
-      
-      // bucle de las Rondas (principal del juego)
-      for(int ronda = 0; ronda < rondas; ronda++){
-        JugarRonda(ronda, rondas, &cantidadApuestas, gananciasPorRonda, perdidasPorRonda, numerosGanadores);
-        totalPerdidas += perdidasPorRonda[ronda];
-        totalGanancias += gananciasPorRonda[ronda];
-      }
-
-      printf(
-        "\nLa Mesa tuvo una "COLOR_46 BOLD_W"ganancia de %d fichas"NORMAL_W", y una "RED_C BOLD_W"perdida de %d fichas"NORMAL_W" en el juego.\n\n",
-        totalGanancias, totalPerdidas
-      );
-      // al finalizar con la totalidad de las rondas, se tiene que indicar las perdidas y ganancias totales
-      
-      if(totalPerdidas < totalGanancias){
-        printf(COLOR_46 BOLD_W"\nMESA GANADORA C: !!\n"NORMAL_W);
-      }else if(totalPerdidas == totalGanancias){
-        printf(COLOR_220 BOLD_W"\nMESA NO CONFORME :/ !!\n"NORMAL_W);
-      }else{
-        printf(RED_C BOLD_W"\nMESA EN PROBLEMAS :o !!\n"NORMAL_W);
-      }
-
-      printf("\nEl promedio de apuestas por ronda fue: %.2f.\n", ((float)cantidadApuestas)/((float)rondas));
-
-      ret = contarColor(numerosGanadores, rondas);
-      switch(ret) {
-        case 1: printf("El numero "RED_C BOLD_W"rojo"NORMAL_W" ha salido mas de 5 veces seguidas!\n"); break;
-        case 0: printf("El numero "BLACK_C WHITE_B BOLD_W"negro"NORMAL_W" ha salido mas de 5 veces seguidas!\n"); break;
-        case 2: printf("El numero "BLACK_C BOLD_W WHITE_B"negro"NORMAL_W" y "RED_C BOLD_W"rojo"NORMAL_W" han salido mas de 5 veces seguidas!"); break;
-      }
-      
-      printf(BLUE_C BOLD_W"En este juego salieron %d bolas con valores primos.\n" NORMAL_W, contarPrimos(numerosGanadores, rondas));
-
-      printf("\nGracias por jugar!.\n");
+      break;
     }
   }
+
+  clear;
+  printf("\nQue empiece las apuestas c: !!\n\n");
+  // x  numeros de rondas indicadas por el usuario
+  printf("Usted jugará %d %s en la ruleta europea \n\n", rondas, (rondas > 1 ? "rondas" : "ronda"));
+  
+  // bucle de las Rondas (principal del juego)
+  for(int ronda = 0; ronda < rondas; ronda++){
+    JugarRonda(ronda, rondas, &cantidadApuestas, gananciasPorRonda, perdidasPorRonda, numerosGanadores);
+    totalPerdidas += perdidasPorRonda[ronda];
+    totalGanancias += gananciasPorRonda[ronda];
+  }
+  // al finalizar con la totalidad de las rondas, se tiene que indicar las perdidas y ganancias totales
+  
+  printf(
+    "\nLa Mesa tuvo una "COLOR_46 BOLD_W"ganancia de %d fichas"NORMAL_W", y una "RED_C BOLD_W"perdida de %d fichas"NORMAL_W" en el juego.\n\n",
+    totalGanancias, totalPerdidas
+  );
+  
+  if(totalPerdidas < totalGanancias){
+    printf(COLOR_46 BOLD_W"\nMESA GANADORA C: !!\n"NORMAL_W);
+  }else if(totalPerdidas == totalGanancias){
+    printf(COLOR_220 BOLD_W"\nMESA NO CONFORME :/ !!\n"NORMAL_W);
+  }else{
+    printf(RED_C BOLD_W"\nMESA EN PROBLEMAS :o !!\n"NORMAL_W);
+  }
+
+  printf("\nEl promedio de apuestas por ronda fue: %.2f.\n", ((float)cantidadApuestas)/((float)rondas));
+
+  ret = contarColor(numerosGanadores, rondas);
+  switch(ret) {
+    case 1: printf("El numero "RED_C BOLD_W"rojo"NORMAL_W" ha salido mas de 5 veces seguidas!\n"); break;
+    case 0: printf("El numero "BLACK_C WHITE_B BOLD_W"negro"NORMAL_W" ha salido mas de 5 veces seguidas!\n"); break;
+    case 2: printf("El numero "BLACK_C BOLD_W WHITE_B"negro"NORMAL_W" y "RED_C BOLD_W"rojo"NORMAL_W" han salido mas de 5 veces seguidas!"); break;
+  }
+  
+  printf(BLUE_C BOLD_W"En este juego salieron %d bolas con valores primos.\n" NORMAL_W, contarPrimos(numerosGanadores, rondas));
+
+  printf("\nGracias por jugar!.\n");
+  
+    
+  
 }
 // fin de la funcion principal de mi programa
 
-//segunda funcion principal
+//segunda funcion principal                  
 void JugarRonda(int ronda, int rondas, int *p_cantidadApuesta,int gananciasPorRonda[], int perdidasPorRonda[], int numerosGanadores[]){
   int apuesta[MAXIMO_APUESTAS];
   int cantidadFichas[MAXIMO_APUESTAS]; //valor de la apuesta
   int numeroDeBola = (-1);
-
+  
   menuApuestas(apuesta, cantidadFichas, ronda, rondas, p_cantidadApuesta );
 
   printf(COLOR_226 BOLD_W"Lanzamiento de la bola\n"NORMAL_W );
@@ -120,14 +127,13 @@ void JugarRonda(int ronda, int rondas, int *p_cantidadApuesta,int gananciasPorRo
   perdidasPorRonda[ronda] = 0;
   gananciasPorRonda[ronda] = 0;
 
-  //recorre las apuestas y contabiliza(suma) las ganancias y perdidas de la MESA.
   // PARA SABER CUAL ES LA ULTIMA APUESTAS => 99
 
    for (int i = 0; apuesta[i] != 99 && i < MAXIMO_APUESTAS; i++){
      if(apuesta[i] >=0 && apuesta[i] <= 36 ){
        //pleno
       if(apuesta[i] == numeroDeBola){
-        //Si gana el usuario la mesa pierde
+        //Si gana la mesa pierde
         perdidasPorRonda[ronda] += cantidadFichas[i] * 35;
       }else{
         gananciasPorRonda[ronda] += cantidadFichas[i];
@@ -183,7 +189,7 @@ void JugarRonda(int ronda, int rondas, int *p_cantidadApuesta,int gananciasPorRo
 void menuApuestas(int apuesta[], int cantidadFichas[], int ronda, int rondas, int *p_cantidadApuesta){
   int opcion = (-1);
   int contador = 0; // las apuestas que ya hizo
-  // int valorDeApuesta;
+  
 
   do{
     printf(BOLD_W"Usted esta jugando la ronda %d/%d\n\n"NORMAL_W, ronda + 1, rondas);
@@ -213,7 +219,6 @@ void menuApuestas(int apuesta[], int cantidadFichas[], int ronda, int rondas, in
     scanf("%d", &opcion);
     
    // si simplemente elije un numero del 0 al 39 
-   // entonces quiere decir que esta apostando a ese numero.
     if( opcion >= 0  && opcion <= 36) {
       clear;
       printf("Ingrese el numero de fichas a apostar al %d de "COLOR_131 BOLD_W"NÚMERO PLENO:"NORMAL_W"\n\n\n", opcion);

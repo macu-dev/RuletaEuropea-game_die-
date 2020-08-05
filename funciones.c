@@ -1,3 +1,6 @@
+// Nombre : María Claudia Pérez Escalante
+// correo : mariaclaudiaperezes@gmail.com
+// DNI: 95.962.971
 
 #include "funciones.h"
 
@@ -61,7 +64,7 @@ int numeroEsRojo(int numero){
 // lanzar la bola
 int lanzarBola(){
   int numeroRandom;
-  numeroRandom = 12;// rand()%37;
+  numeroRandom = rand()%37;
   system("sleep 2s"); // retardo de 2s
 
   printf(
@@ -76,6 +79,7 @@ int lanzarBola(){
 //funcion pertenece
 int perteneceArrYApuestaDoble(int ficha, int arreglo[], int limite, int apuestas[]){
    for( int i = 0; i < limite ; i++){
+     // si la ficha esta en el arreglo
     if(arreglo[i] == ficha && esApuestaConGanaciaDoble(apuestas[i])){
       return 1; // pertenece     
     }
@@ -84,7 +88,7 @@ int perteneceArrYApuestaDoble(int ficha, int arreglo[], int limite, int apuestas
 }
 // fin de la funcion pertenece
 
-//obtener ficha      // le paso un puntero , donde se va guardar la ficha obtenida
+//obtener ficha   
 void obtenerFicha(int *ficha){
   int input;
   int suma = 0;
